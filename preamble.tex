@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{microtype}
+\usepackage[utf8]{inputenc} 
+\usepackage[a4paper, total={6in, 11.5in}]{geometry}
+\usepackage{MnSymbol}
+\usepackage{stmaryrd}
+\usepackage{enumerate}
+
+\newcommand\task[2]{\section*{Aufgabe #1)\hfill \underline{\,\,\,\,\,\,}\,\,/#2p.}}
+
+% Interpretation (I)
+\newcommand\I{I}
+% Interpretation und belegung (I, \beta)
+\newcommand\Ib{\I, \beta}
+
+%% models
+\newcommand\lmodels{\leftmodels} 			% =|
+\newcommand\bimodels{\leftmodels\models}	% =||=
+
+
+%% table for total points
+\newcommand\pointsttl[1]{\section*{Gesamtpunkte: \hfill \underline{\,\,\,\,\,\,}\,\,/#1p.}}
+
+%% Funktionen und Prädikate
+% Funktionen (arg ist anzahl der stellen)
+\newcommand\func[1]{\mathcal{F}^{#1}}
+% Prädikate (arg ist anzahl der stellen)
+\newcommand\praed[1]{\mathcal{P}^{#1}}
+
+%% Regeln
+\newcommand\defrule[2]{\frac{#1}{#2}}
+
+%% Funktionszahl
+\newcommand\funcnum[1]{\#_{F}\, #1}
+
+% Für ersetzungen in belegungen wie { x \mapsto d }
+\newcommand\repl[2]{\{#1 \mapsto #2\}}
+
+% für alle x .
+\newcommand\fall[1]{\forall #1 \, . \,}
+\newcommand\ex[1]{\exists #1 \, . \,}
+
+% short biimplication
+\newcommand\biimpl{\Leftrightarrow}
+
+% more symbols: https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+
+\newcommand\cfgtitle[1]{\title{Übungsblatt #1 Logik Für Informatiker WS19/20\\%
+\begin{large} Übungsgruppe 1 \end{large}}}
+\author{Daniel Schubert\\Anton Lydike}
