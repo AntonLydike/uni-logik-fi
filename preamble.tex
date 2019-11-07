@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{microtype}
-\usepackage[utf8]{inputenc} 
+\usepackage[utf8]{inputenc}
 \usepackage[a4paper, total={6in, 9.6in}]{geometry}
 \usepackage{MnSymbol}
 \usepackage{stmaryrd}
@@ -9,6 +9,9 @@
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{svg}
+
 
 %% headers
 \pagestyle{fancy}
@@ -68,3 +71,5 @@
 \newcommand\cfgtitle[1]{\title{\vspace{-1.5cm}Übungsblatt #1\\%
 \begin{large} Übungsgruppe 1 \end{large}} \lfoot{Übungsblatt #1}\cfoot{Übungsgruppe 1}}
 \author{Daniel Schubert\\Anton Lydike}
+
+\newcommand\smiley{\vfill\centering\includesvg[scale=.5]{../../smile.svg}}

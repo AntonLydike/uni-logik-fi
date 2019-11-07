@@ -17,18 +17,36 @@
 		
 		\item[,,$\Rightarrow$"]
 		
-		Betrachte $A=B=\text{ist\_gerade}(x)$, es folgt nun $A\to B \equiv A\to A$, was immer Wahr ist. Dagegen gilt $\I\not\models A$
+		Betrachte:		
 		
-		Die Rückrichtung gilt nicht, da für $\I \not\models A $ und $\I \models B$ jeweils unterschiedliche $\beta$ gewählt werden können, weswegen die beiden Aussagen nicht ohne weiteres zusammengeführt werden können.
+		\begin{align*}
+				A &= \text{is\_divisble\_by\_four}(x) \\
+				B &= \text{is\_even}(x) \\ 
+		\end{align*}
 		
-		$$ \I \not\models A \text{ oder } \I \models B \overset{\text{Def. Modell}}{\iff}  \forall \beta : \Ib \not\models A \text{ oder } \forall \hat{\beta} : \I, \hat{\beta} \models B $$
+		Daraus folgt, dass $A\to B$ für alle $\beta$ wahr ist. Jedoch gilt weder
 		
-
+		\begin{align*}
+				\I \not\models & \text{ is\_divisble\_by\_four}(x) \\
+				\I \models & \text{ is\_even}(x) \\ 
+		\end{align*}
+		
+		für alle belegungen $\beta$. So gilt z.B. 
+		
+		\begin{align*}
+				\Ib \models A & & \text{ für } \beta & = \{4,8\} 	 \\
+				\I,\hat\beta \not\models B & & \text{ für } \hat\beta & =\{1,2,3,4\} 
+		\end{align*}
+		
+		
+		Somit gilt weder $\I\not\models A$ noch $\I\models B$ für alle $\beta$. \qed
+		
+		
 		\item[,,$\Leftarrow$"]
 		
 		\begin{align*}
 			\I \not\models A \text{ oder } \I \models B & \Rightarrow \text{für alle } \beta \text{ gilt } \Ib \not\models A \text{ oder für alle } \hat{\beta} \text{ gilt } \I, \hat{\beta} \models B	& (\text{Def. Modell})\\
-			& \Rightarrow \text{für alle } \beta \text{ gilt } (\Ib \not\models A \text{ oder } \Ib \models B)  					& (\text{Meta})\\
+			& \Rightarrow \text{für alle } \beta \text{ gilt } (\Ib \not\models A \text{ oder } \Ib \models B)  					& (\text{Insb. $\beta = \hat\beta$})\\
 			& \Rightarrow \text{für alle } \beta \text{ gilt } (\Ib \models \lnot A \text{ oder } \Ib \models B ) 	& (\text{A3})\\
 			& \Rightarrow \text{für alle } \beta \text{ gilt } \Ib \models \lnot A \lor B 							& (\text{A4})\\
 			& \Rightarrow \text{für alle } \beta \text{ gilt } \Ib \models \lnot A \lor \lnot(\lnot B) 			& (\text{Meta})\\
@@ -36,16 +54,7 @@
 			& \Rightarrow \I \models A \to B													& (\text{Def. Modell})\\
 		\end{align*}		
 		
-		\textbf{Alter beweis:}
-		\begin{align*}
-				\I \models A \to B  & \Rightarrow \forall \beta : \Ib \models A \to B 			& (\text{Def. Modell})\\
-				& \Rightarrow \forall \beta : \Ib \models \lnot(A \land \lnot B) 					& (\text{Meta})\\
-				& \Rightarrow \forall \beta : \Ib \models \lnot A \lor \lnot(\lnot B) 			& (\text{De Morgan})\\
-				& \Rightarrow \forall \beta : \Ib \models \lnot A \lor B 							& (\text{Meta})\\
-				& \Rightarrow \forall \beta : (\Ib \models \lnot A \text{ oder } \Ib \models B ) 	& (\text{A4})\\
-				& \Rightarrow \forall \beta : (\Ib \not\models A \text{ oder } \Ib \models B ) 	& (\text{A3})\\
-				& \Rightarrow \I \not\models A \text{ oder } \I \models B 							& (\text{Def. Modell})\\
-		\end{align*}		
+		\qed		
 		
 	\end{enumerate}
 	
@@ -76,18 +85,20 @@
 
 	\item Betrachte $(\fall{x} P(x))\land \fall{y}Q(y)$ mit Interpretationen $I, J$ und $I \subset J$:
 	
-	\begin{tabular}{l l l}
-		$D_J := \{\Delta, \Box, \circ, \medstar\}$ & $P^J(x) := x$ ist konvex & $Q^J(x) := tt$ \\
-		$D_I := \{\Delta, \Box\} \subset D_J$ 		   & $P^I(x) := x$ hat Ecken & $Q^I(x) := tt$\\
-	\end{tabular}
+	\begin{center}
+		\begin{tabular}{l l l}
+			$D_J := \{\triangle, \Box, \circ, \medstar, \between\}$ & $P^J(x) := x$ ist konvex & $Q^J(x) := tt$ \\
+			$D_I := \{\triangle, \Box\} \subset D_J$ 		   & $P^I(x) := x$ hat Ecken & $Q^I(x) := tt$\\
+		\end{tabular}
+	\end{center}
 	
-	Es folgt, dass $\forall d \in D_I : P^I(d) \iff P^J(d)$ und $\forall d \in D_I : Q^I(d) \iff Q^J(d)$, jedoch ist $P^I(\medstar) \not\iff P^J(\medstar)$, weshalb 
+	Es folgt, dass $\forall d \in D_I : P^I(d) \iff P^J(d)$ und $\forall d \in D_I : Q^I(d) \iff Q^J(d)$, jedoch ist $P^I(\medstar) \not\iff P^J(\medstar)$, weshalb zwar $\I\models (\fall{x} P(x))\land \fall{y}Q(y)$ gilt, $J \models (\fall{x} P(x))\land \fall{y}Q(y)$ jedoch nicht.
 	
-	\bigskip Es st nur für die erset Formel möglich, da nur die erste Formel universell ist.
+	\bigskip Es st nur für die erste Formel möglich, da nur die erste Formel universell ist.
 	
 	\item Es existiert keine Regel, die es erlaubt den $\exists$-Quantor herzuleiten.
 
-	\item Pfeile sind böse
+	\item \textit{*Intuitive Begründung, weshalb Pfeile böse sind*}
 
 \end{enumerate}
 
@@ -95,16 +106,15 @@
 
 
 \begin{enumerate}
-	\item 
-	\item 
-	\item 
-	\item 
-	\item 
-	\item 	
+	\item $\fall{y} (P(y) \land P(x)) \to LE(x,y)  $
+	\item $\ex{x} P(x) \land \fall{y} LE(x,y) $
+	\item $\ex{x} \fall{y} x+y=y$
+	\item $\ex{x} P(x) \land \fall{y} P(y) \to LE(y,x)$
+	\item Ja gibt es. Mit $D=\{1,2,3,4,5,6,7,8\}$ folgt, dass 7 die größte Primzahl ist.
+	\item $(\ex{x,y} x \not = y \land P(x) \land P(y)) \to \lnot A$
 \end{enumerate}
 
-
-
 \pointsttl{25}
+\smiley
 
 \end{document}
