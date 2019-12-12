@@ -1,0 +1,89 @@
+\input{../../preamble.tex}
+
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\FV}{\text{FV}}
+\newcommand{\BV}{\text{BV}}
+
+\DeclareMathOperator{\anzahl}{anzahl}
+
+% Logik f.I.
+
+\cfgtitle{8}
+\date{Donnerstag 12.12.2019}
+
+\newcommand{\vdashg}{\vdash_\text{G}}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{8}
+
+\begin{enumerate}
+	\item \begin{align}
+		A, \lnot \lnot B & \vdashg A & \text{A}\\
+		A, \lnot B & \vdashg \lnot B & \text{A} \\
+		A, \lnot A & \vdashg \lnot B & \text{\lnot L} & \text{(1)} \\
+		A, (\lnot A \lor \lnot B) & \vdashg \lnot B & \text{\lor L} & \text{(2)(3)} \\
+		A,B &\vdashg \lnot(\lnot A \lor \lnot B)  & \text{\lnot R}\\
+		(A \land B) &\vdashg \lnot(\lnot A \lor \lnot B)  & \text{\land L}\\
+		&\vdashg (A \land B) \to \lnot(\lnot A \lor \lnot B)  & \text{\to R}
+	\end{align}
+	\item \begin{align}
+		A,B,C,\lnot C & \vdashg A & \text{A} \\
+		A,\lnot C & \vdashg A  & \text{A} \\
+		A,B\land C, \lnot C & \vdashg A  & \text{A} \\
+		B,C,A & \vdashg \lnot(\lnot C)  & \text{A} \\
+		B,\lnot C, C & \vdashg A & \text{\lnot R} \\
+		B\land C, B,\lnot C & \vdashg A & \text{\land L} \\
+		A,B,\lnot C & \vdashg A & \text{} \\
+		A \lor (B\land C), A, \lnot C &\vdashg A& \text{\lor L} \\
+		A \lor (B \land C), B, \lnot C &\vdashg A & \text{\lor L} \\
+		A \lor (B \land C), A\lor B, \lnot C & \vdashg A & \text{\lor L} \\
+		A \lor (B\land C), A\lor B & \vdashg A\lor C& \text{\lor R} \\
+		A \lor (B\land C), A\lor B & \vdashg A\lor B& \text{\lor R} \\
+		A \lor (B\land C), A\lor B & \vdashg (A\lor B) \land (A\lor C)& \text{\land R} \\
+		& \vdashg (A\lor (B \land C)) \to ((A\lor B) \land (A\lor C)) & \text{\to R} \\
+	\end{align}
+\end{enumerate}
+
+
+\task{2}{8}
+
+\begin{enumerate}
+	\item  \begin{align}
+		\vdash & y=x \to (x=y \to y=x) & \text{Ax2} \\
+		\vdash & \fall{x} \fall{y} (y=x \to (x=y \to y=x)) & \text{ge} \\
+		\vdash & (\fall{x} \fall{y} (y=x \to (x=y \to y=x))) \to ((\fall{x} \fall{y} y=x) \to (\fall{x} \fall{y} x=y \to y=x)) & \text{D\forall} \\
+		\vdash & (\fall{x} \fall{y} y=x) \to (\fall{x} \fall{y} x=y \to y=x) & \text{MP} \\
+		\vdash & \fall{x} \fall{y} x=y \to y=x & \text{MP}
+	\end{align}
+	\item \begin{align}
+		& \{P(y)\to \fall{x} Q(x)\} \vdash P(y) \to \fall{x} Q(x) & \text{Trivial} \\
+		& \{P(y)\to \fall{x} Q(x)\} \vdash \fall{x} P(y) \to \fall{x} Q(x) & \text{ge(1)} \\
+		& \{P(y)\to \fall{x} Q(x)\} \vdash \fall{x} P(y) \to Q(x) & \text{D\forall - Umgekehrt}
+	\end{align}
+\end{enumerate}
+
+
+\task{3}{9}
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item  $\fall{e} K(e) \to \fall{z} K(z) \land \ex{x}. P(x,e,z)$
+		\item $\anzahl \in P^2$, $\anzahl^{I} := \# (e \overset{x}{\to} z)$ (zu deutsch: Anzahl der Kanten x von e zu z.)\\
+		 $\fall{e} K(e) \to \fall{x} P(x,e,z) \to \anzahl(P)=1$
+		\item  $\fall{k} K(k) \to \fall{i} K(i) \to \fall{x} P(x,i,i) \land (\lnot \ex{z} P(z,i,k) \land i \neq K)$
+	\end{enumerate}
+	\item \begin{enumerate}
+		\item ZP,ZR $\in$ $P^1$\\
+ZP$^{I} := x$ ist Zustand aus $G_P$\\
+ZR$^{I} := x$ ist Zustand aus $G_R$ \\
+		\item $\fall{x_1} \fall{x_2} \fall{y_1} \fall{y_2} \to ZP(x_1) \land ZP(x_2) \land ZR(y_1) \land ZR(y_2) \to x_1 = y_1 \to ZP(x_1)=x_2 \land ZR(y_1)=y_2 \to x_2 = y_2$
+	\end{enumerate}
+\end{enumerate}
+
+\pointsttl{25}
+
+\vfill\centering\includesvg[scale=.5]{../../smile.svg}
+\end{document}

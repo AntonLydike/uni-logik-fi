@@ -1,11 +1,11 @@
-\documentclass{article}
+\documentclass[leqno]{article}
 \usepackage{microtype}
 \usepackage[utf8]{inputenc}
-\usepackage[a4paper, total={6in, 9.6in}]{geometry}
-\usepackage{MnSymbol}
-\usepackage{stmaryrd}
+\usepackage[a4paper, total={7in, 9.6in}]{geometry}
 \usepackage{enumerate}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathabx}
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{mathtools}
@@ -20,6 +20,9 @@
 \lhead{Daniel Schubert, Anton Lydike}
 \rfoot{Seite \thepage}
 
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+
 % simple command to display Aufgabe <num>)       ___ / <num>p.
 \newcommand\task[2]{\section*{Aufgabe #1)\hfill \underline{\,\,\,\,\,\,}\,\,/#2p.}}
 
@@ -27,11 +30,19 @@
 \newcommand\I{I}
 % Interpretation und belegung (I, \beta)
 \newcommand\Ib{\I, \beta}
+% Teilinterpretation (J)
+\newcommand\J{J}
+% Teilinterpretation und belegung (J, \beta)
+\newcommand\Jb{\J, \beta}
 
 %% models
-\newcommand\lmodels{\leftmodels} 			% =|
-\newcommand\bimodels{\leftmodels\models}	% =||=
+%\newcommand{\models}{\rightmodels}
+\renewcommand{\models}{\vDash}
+\newcommand\lmodels{\Dashv} 			% =|
+\newcommand\bimodels{\lmodels\models}	% =||=
 
+
+\newcommand\zuzeigen{\mathrm{Z\kern-.3em\raise-0.5ex\hbox{Z}}}
 
 %% table for total points
 \newcommand\pointsttl[1]{\section*{Gesamtpunkte: \hfill \underline{\,\,\,\,\,\,}\,\,/#1p.}}
@@ -73,3 +84,8 @@
 \author{Daniel Schubert\\Anton Lydike}
 
 \newcommand\smiley{\vfill\centering\includesvg[scale=.5]{../../smile.svg}}
+
+
+\newcommand\N{\mathbb{N}}
+
+\newcommand\ff{f\!\! f}

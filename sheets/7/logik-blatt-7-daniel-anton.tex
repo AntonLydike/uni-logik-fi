@@ -1,0 +1,95 @@
+\input{../../preamble.tex}
+
+
+\newcommand{\FV}{\text{FV}}
+\newcommand{\BV}{\text{BV}}
+
+% Logik f.I.
+
+\cfgtitle{7}
+\date{Donnerstag 5.12.2019}
+
+\newcommand\X{\mathcal{X}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{9}
+
+\begin{enumerate}[1)]
+	\item \begin{align*}
+		\FV(A) & = \FV (\fall{v} (\ex{x} P(x) \land q \to \ex{z} P(x)) \land Q(v, w, x)) \\
+		  & = \FV((\ex{x} P(x) \land q \to \ex{z} P(x)) \land Q(v, w, x)) \setminus \{v\} & \text{A5} \\
+		  & = (\FV(\ex{x} P(x) \land q \to \ex{z} P(x)) \cup \FV ( Q(v, w, x)) ) \setminus \{v\}  & \text{A4} \\
+		  & = ((\FV(P(x) \land q \to \ex{z} P(x)) \setminus \{x\}) \cup \FV ( Q(v, w, x)) ) \setminus \{v\} & \text{A5} \\
+		  & = (((\FV(P(x)) \cup \FV(q) \cup \FV(\ex{z} P(x))) \setminus \{x\}) \cup \FV(v) \cup \FV(w) \cup \FV(x)) \setminus \{v\}  & \text{A4} \\
+		  & = (((\FV(x) \cup \{q\} \cup \FV(\ex{z} P(x))) \setminus \{x\}) \cup \{v\} \cup \{w\} \cup \{x\}) \setminus \{v\} & \text{A4} \\
+		  & = (((\{x\} \cup \{q\} \cup (\FV(P(x)) \setminus \{z\} )) \setminus \{x\}) \cup \{v,w,x\}) \setminus \{v\} & \text{A5} \\
+		  & = (((\{x, q\} \cup (\{x\} \setminus \{z\})) \setminus \{x\}) \cup \{v,w,x\}) \setminus \{v\} & \text{A4} \\
+		  & = (((\{x, q\} \cup \{x\}) \setminus \{x\}) \cup \{v,w,x\}) \setminus \{v\} & \text{Mengenlehre} \\
+		  & = ((\{x, q\} \setminus \{x\}) \cup \{v,w,x\}) \setminus \{v\} \\
+		  & = (\{q\} \cup \{v,w,x\}) \setminus \{v\} \\
+		  & = \{q, v,w,x\} \setminus \{v\} \\
+		  & = \{q,w,x\}\\ \\
+	\BV(B) & = \BV (\fall{v} (\ex{x} P(x) \land q \to \ex{z} P(x)) \land Q(v, w, x)) \\
+		  & = \BV((\ex{x} P(x) \land q \to \ex{z} P(x)) \land Q(v, w, x)) \cup \{v\} & \text{A5} \\
+		  & = (\BV(\ex{x} P(x) \land q \to \ex{z} P(x)) \cup \BV ( Q(v, w, x)) ) \cup \{v\}  & \text{A4} \\
+		  & = ((\BV(P(x) \land q \to \ex{z} P(x)) \cup \{x\}) \cup \BV ( Q(v, w, x)) ) \cup \{v\} & \text{A5} \\
+		  & = (((\BV(P(x)) \cup \BV(q) \cup \BV(\ex{z} P(x))) \cup \{x\}) \cup \BV(v) \cup \BV(w) \cup \BV(x)) \cup \{v\}  & \text{A4} \\
+		  & = (((\BV(x) \cup \emptyset \cup \BV(\ex{z} P(x))) \cup \{x\}) \cup \emptyset \cup \emptyset \cup \emptyset) \cup \{v\} & \text{A4} \\
+		  & = ((\emptyset \cup \emptyset \cup (\BV(P(x)) \cup \{z\} )) \cup \{x\}) \cup \{v\} & \text{A5} \\
+		  & = ((\emptyset \cup \{z\} ) \cup \{x\}) \cup \{v\} & \text{A5} \\
+		  & = \{z, x, v\} & \text{Mengenlehre} \\
+	\end{align*}
+	
+% & = \FV(\fall{x_1} \fall{y_1} R(x_1, y_1) \land T_1(x_1, z, x_2) \land x_2 \ne y_2\to \ex{y_2} T_2(y_1, z, y_2) \land R(x_2, y_2)) \\
+	\item \begin{align*}
+		\FV(B) 
+		       & = \{x_2, y_2\} \\ \\
+		\BV(B) & = \{x_1, y_1, y_2\}
+	\end{align*}
+\end{enumerate}
+
+\task{2}{7}
+
+\begin{enumerate}[a)]
+	\item \begin{align*}
+		& (\fall{x_0}f(x_1,x_2) = g(x_2)) \, \repl{x_2}{f(x_1,x_2)} \\
+ \equiv & \fall{x_0}(f(x_1,x_2) = g(x_2)) \, \repl{x_2}{f(x_1,x_2)} \\
+ \equiv & \fall{x_0}(f(x_1,x_2)\, \repl{x_2}{f(x_1,x_2)} = g(x_2)\, \repl{x_2}{f(x_1,x_2)})  \\
+ \equiv & \fall{x_0}(f(x_1\, \repl{x_2}{f(x_1,x_2)}),x_2\, \repl{x_2}{f(x_1,x_2)})) = g(x_2\, \repl{x_2}{f(x_1,x_2)}))  \\
+ \equiv & \fall{x_0}(f(x_1,f(x_1,x_2)) = g(f(x_1,x_2)))  \\
+	\end{align*}
+	\item \begin{align*}
+		& (\fall{x_0} \ex{x_1}f(x_1, x_2) = g(x_2) \to \ex{x_2} P(x_1, g(x_2))) \repl{x_2}{f(x_1, x_2)} \\
+		\equiv & \fall{x_0} \ex{x_3}(f(x_3, x_2) = g(x_2) \to \ex{x_2} P(x_1, g(x_2))) \repl{x_2}{f(x_1, x_2)} \\
+		\equiv & \fall{x_0} \ex{x_3}(f(x_3, x_2) = g(x_2))\repl{x_2}{f(x_1, x_2)} \to (\ex{x_2} P(x_1, g(x_2))) \repl{x_2}{f(x_1, x_2)} \\
+		\equiv & \fall{x_0} \ex{x_3}f(x_3, x_2)\repl{x_2}{f(x_1, x_2)} = g(x_2)\repl{x_2}{f(x_1, x_2)} \to \ex{x_2} P(x_1, g(x_2)) \\
+		\equiv & \fall{x_0} \ex{x_3}f(x_3, x_2)\repl{x_2}{f(x_1, x_2)} = g(x_2)\repl{x_2}{f(x_1, x_2)} \to \ex{x_2} P(x_1, g(x_2)) \\
+		\equiv & \fall{x_0} \ex{x_3}f(x_3, f(x_1, x_2)) = g(f(x_1, x_2)) \to \ex{x_2} P(x_1, g(x_2)) 
+	\end{align*}
+\end{enumerate}
+
+\task{3}{9}
+
+$$ A \equiv (\lnot p\lor \lnot r\lor s)\land \lnot s\land (\lnot p\lor \lnot q\lor r)\land (\lnot p\lor q\lor s) $$
+
+\begin{enumerate}[1)]
+	\item $$ F = \{\{\lnot p,\lnot r, s\},\{\lnot s\},\{\lnot p,\lnot q, r\},\{\lnot p, q, s\}\} = Res^0(F)$$
+	\item Das verfahren terminiert, wenn ein $N$ existiert, so dass $\forall i > N : Res^i(F) = Res^{i+1}(F)$ gilt. Da aber für alle $i$ gilt, dass jede Menge $M \in Res^i(F)$ aus freien Variablen (oder deren Negation) von $F$ besteht, und $F$ nur endlich viele (sagen wir $n$) Freie variablen enthält, gilt $\forall i : |Res^i(F)| \leq 2^{2^{(2n)}}$. Außerdem gilt trivialerweise $\forall i : Res^i(F) \subseteq Res^{i+1}(F)$. Daraus folgt offensichtlich, dass ein $N$ existieren muss, so dass $\forall i > N : Res^i(F) = Res^{i+1}(F)$ gilt. Damit terminiert das Verfahren immer.
+	\item \begin{align*}
+		Res^1(F) & = Res^0(F) \cup \{R \,|\, R \text{ Resolvente von } Res^0(F)\} \\
+		         & = Res^0(F) \cup \{\{\lnot p, \lnot r\},\{\lnot p, q\},\{\lnot r, s\},\{ \lnot q, r\},\{ q,s\}\} \\ \\
+		Res^2(F) & = Res^1(F) \cup \{R \,|\, R \text{ Resolvente von } Res^1(F)\} \\
+		         & = Res^1(F) \cup \{\{\lnot p, \lnot r \},\{ \lnot p, q \},\{ \lnot r \},\{ \lnot q \},\{ \lnot r, s \},\{ \lnot q, r \},\{ q,s \},\{ q \},\{ \lnot p, \lnot q, s \},\\ &\{ \lnot p, r, s \},\{ \lnot p, \lnot q \},\{ \lnot p, r \},\{ \lnot p, \lnot q, s \},\{ \lnot p, r, s \},\{ \lnot r, q \},\{ \lnot q, s \},\{ r,s \}\}\\
+	\end{align*}
+	
+	Da $\{\lnot r\}, \{r, s\} \in Res^2(F)$ gilt, folgt $\{s\} \in Res^3(F)$. Da $\{\lnot s\} \in Res^0(F)$ ist, gilt $\emptyset \in Res^4(F)$.
+	\item  Laut Satz 2.7 gilt: $\emptyset \in Res^*(F) \land \{p\} \in Res^*(F) \Rightarrow \{\lnot p\} \in Res^*(F)$. In unserem Fall folgt, dass $\{\lnot p\} \in Res^*(F)$.
+\end{enumerate}
+\pointsttl{25}
+
+\vfill\centering\includesvg[scale=.5]{../../smile.svg}
+\end{document}

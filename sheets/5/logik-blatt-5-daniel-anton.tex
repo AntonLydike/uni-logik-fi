@@ -1,0 +1,70 @@
+\input{../../preamble.tex}
+
+
+
+% Logik f.I.
+
+\cfgtitle{5}
+\date{Donnerstag 21.11.2019}
+
+\newcommand\X{\mathcal{X}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{6}
+
+\begin{align*}
+	(p\lor\lnot q)\land (p\lor\lnot r)\land (\lnot p\lor\lnot q) \land (r\lor q)  &\bimodels (\lnot q \lor p) \land (\lnot q\lor\lnot p) \land (p\lor\lnot r) \land (r\lor q) & \text{(Kommut.)} \\
+	 &\bimodels \lnot q \land (p\lor\lnot r) \land (r\lor q) & \text{(Tipp)} \\
+	 &\bimodels ((\lnot q \land \lnot r) \lor (p \land \lnot q \land r)) \land (r\lor q) & \text{(Meta)} \\
+	 &\bimodels \lnot(\lnot q \land \lnot r) \land \lnot(p \land \lnot q \land r) \land (r\lor q) & \text{(Demorgan)} \\
+	 &\bimodels (q \lor r) \land \lnot(p \land \lnot q \land r) \land (r \lor q) & \text{(Demorgan)} \\
+	 &\bimodels (r \lor q) \land (r \lor q) \land \lnot(p \land \lnot q \land r) & \text{(Kommut.)} \\
+	 &\bimodels (r \lor q) \land \lnot(p \land \lnot q \land r) & \text{(Idemp.)} \\
+	 &\bimodels \lnot(r \lor q) \lor (p \land \lnot q \land r) & \text{(Demorgan)} \\
+	 &\bimodels (\lnot q \land \lnot r) \lor (p \land \lnot q \land r) & \text{(Demorgan)} \\
+	 &\bimodels \lnot q \land (p\lor\lnot r) & \text{(Meta)} \\
+	 &\bimodels \lnot q \land (\lnot p \land r) & \text{(Demorgan)} \\
+	&\bimodels \lnot q\land r \land \lnot p
+\end{align*}
+
+\task{2}{6}
+
+\begin{enumerate}
+	\item $ \fall{x} N(x) \to R(x) $
+	\item $ \fall{l} L(l) \to (\ex{s} (S(s) \land In(s,l)) \to (More(inhab(s), inhab(aux))) $
+	\item $ \fall{s} S(s) \land (\fall{l} (L(l) \land In(s,l)) \to (\fall{o} (L(o) \land \lnot(l=o))  \to \lnot (In(s,o))) $
+	\item $ \fall{s} S(s) \to (N(inhab(s)) \land \lnot R(inhab(s)))$
+\end{enumerate}
+
+\task{3}{6}
+
+\begin{enumerate}
+	\item 
+		\begin{align}
+		    & \{A\} \vdash A & \text{(Trivial)} \\
+			& A \to (B \to A) & \text{Ax1} \\
+			& B \to A & \text{MP(1)(2)} \\
+			& (A\to(B\to A)) \to ((A \to B) \to (A \to A)) & \text{Ax2} \\
+			& (A \to B) \to (A \to A) & \text{MP(2)(4)} \\
+			& A \to ((A\to A) \to A) & \text{Ax1} \\
+			& (A\to A) \to A & \text{MP(1)(6)} \\
+			& ((A \to A)\to A) \to ((A \to B) \to ((A \to A)\to A)) & \text{Ax1} \\
+			& (A \to B) \to ((A \to A)\to A) & \text{MP(7)(8)} \\
+			& ((A \to B)\to((A \to A) \to A)) \to (((A \to B) \to (A \to A)) \to ((A \to B) \to A)) & \text{Ax2} \\
+			& ((A \to B) \to (A \to A)) \to ((A \to B) \to A) & \text{MP(9)(10)} \\
+			& (A \to B) \to A & \text{MP(5)(11)}
+		\end{align}
+	
+\end{enumerate}
+
+\task{4}{7}
+
+\pointsttl{25}
+
+\smiley
+
+\end{document}

@@ -1,0 +1,121 @@
+\input{../../preamble.tex}
+
+\usepackage{enumitem}
+\usepackage{multirow,tabularx}
+\usepackage{wasysym}
+
+\newlist{axioms}{enumerate}{1}
+\setlist[axioms]{label=Ax\arabic*)}
+
+
+
+% Logik f.I.
+
+\cfgtitle{6}
+\date{Donnerstag 21.11.2019}
+
+\newcommand\X{\mathcal{X}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{10}
+
+\begin{axioms}
+
+\item \begin{align}
+	 \{A,B\} & \vdash A & \text{(A)} \\
+	 \{A,B\} & \vdash B & \text{(A)} \\
+	 A & \vdash B \to A & \text{(\to R)} \\
+	 & \vdash A\to (B\to A) & \text{(\to R)}
+\end{align}
+
+\item \begin{align}
+	 \{A,\lnot C, B\} & \vdash \lnot C & \text{(A)} \\
+	 \{A,\lnot C, B\} &\vdash A & \text{(A)} \\
+	 \{A,\lnot C, B\} &\vdash B & \text{(A)} \\
+	 \{A \to B,\lnot C, A\} &\vdash B & \text{(\to L)} \\
+	 \{A \to B, C, A\} &\vdash C & \text{(A)} \\
+	 \{A \to B, \lnot C, A\} &\vdash A & \text{(A)} \\
+	 \{A \to B, A, B\to C\} &\vdash C & \text{(\to L)} \\
+	 \{A \to (B\to C), A \to B, A\}& \vdash C & \text{(\to L)} \\
+	 \{A \to (B\to C), A \to B\} &\vdash A\to C & \text{(\to R)} \\
+	 \{A \to (B\to C) \} &\vdash (A \to B) \to (A\to C) & \text{(\to R)} \\
+	& \vdash (A \to (B\to C)) \to ((A \to B) \to (A\to C)) & \text{(\to R)}
+\end{align}
+
+
+\item \begin{align}
+	 \{B, \lnot A\} & \vdash B & \text{(A)} \\
+	 \{B, \lnot A\} & \vdash \lnot A & \text{(A)} \\
+	 \{B, \lnot B\} & \vdash A & \text{(\lnot R)} \\
+	 \{B, \lnot A \to \lnot B\} & \vdash A & \text{(\to L)} \\
+	 \{\lnot A \to \lnot B\} & \vdash B \to A & \text{(\to R)} \\
+	  & \vdash (\lnot A \to \lnot B) \to (B \to A)& \text{(\to R)}
+\end{align}
+
+\end{axioms}
+
+
+\task{2}{6}
+
+Sei $(M_i)_{i \in \N}$ eine beliebige folge endlicher, konsistenter Mengen mit $M_i \subset M_{i+1} \forall i\in \N$. Es ist zu zeigen, dass $ M := \bigcup_{i=1}^{\infty} M_i$ wieder konsistent ist.
+
+\bigskip\noindent Angenommen $M$ wäre inkonsistent. Dann müsste $M$ $A$ und $\lnot A$ enthalten. Wir definieren nun $M_0 := \emptyset$ und $\hat{M}_i := M_{i} \setminus M_{i-1}$ als die (endliche) Menge an Aussagen, die im $i$-ten Schritt hinzukommen. Da $\{A, \lnot A\} \subset M$ und alle $M_i$ endlich sind, finden wir $j > 2$ mit:
+
+\pagebreak
+
+\begin{enumerate}
+\item $A \in \hat{M}_j$ und $\lnot A \in M_{j-1}$ oder 
+\item $\lnot A \in \hat{M}_j$  und $A \in M_{j-1}$ oder 
+\item $\{A, \lnot A\} \subset \hat{M}_j$
+\end{enumerate}
+
+\bigskip\noindent In jedem Fall ist einfach zu sehen, dass $M_{j-1}$ konsistent, aber $M_j$ inkonsistent ist, da aus $M_{j-1} \subset M_j$ folgt, dass $\{A, \lnot A\} \subset M_j$ gilt, was ein Wiederspruch zur Angabe ist, dass alle $M_i$ konsistent sind.
+
+\task{3}{9}
+
+Zu zeigen, $M \cup \{A \land B\} \bimodels M \cup \{A,B\}$:
+
+\begin{itemize}
+	\item[,,$\models$''] Sei $\Ib$ beliebig und gelte $\Ib \models M \cup \{A\land B\}$. Dann folgt, $\Ib \models M$ und $\Ib \models A\land B$. Insbesondere also $\Ib \models A$ und $\Ib \models B$. Damit folgt $\Ib \models M \cup \{A,B\}$
+	\item[,,$\lmodels$''] Sei $\Ib$ beliebig und gelte $\Ib \models M \cup \{A, B\}$. Dann folgt $\Ib \models A$, $\Ib \models B$ und $\Ib \models M$. Daraus folgt, $\Ib \models A\land B$. Damit folgt, $\Ib \models M \cup \{A \land B\}$. \qed
+\end{itemize}
+
+\begin{enumerate}
+
+\item \begin{align}
+	& \{\lnot q, r \to (\lnot p \to q), \lnot (p \lor \lnot r)\} \vdash \\	
+	& \{\lnot q, r \to (\lnot p \to q), \lnot p \land r)\} \vdash & \text{(De Morgan)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash & \text{(Hinweis)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash r \to (\lnot p \to q)) & \text{(Trivial)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash r & \text{(Trivial)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash \lnot p \to q & \text{(MP(3)(4)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash \lnot p & \text{(Trivial)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash q & \text{(MP(6)(7)} \\
+	& \{\lnot q, r \to (\lnot p \to q),\lnot p, r\} \vdash \lnot q \text{ \lightning}  & \text{(Trivial)} 
+\end{align}
+
+\item \begin{align}
+	& \{\lnot p \lor (q \to r),  p \to q, \lnot (p \to r)\} \vdash \\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash & \text{Meta}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash p \to (q \to r) & \text{Trivial}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash (p \to (q \to r)) \to ((p \to q) \to (p \to r)) & \text{Ax2}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash (p \to q) \to (p \to r) & \text{MP(3)(4)}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash (p \to q) & \text{Trivial}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash (p \to r) & \text{MP(5)(6)}\\
+	& \{p \to (q \to r),  p \to q, \lnot (p \to r)\} \vdash \lnot (p \to r) \text{ \lightning}& \text{Trivial}
+\end{align}
+
+\item $$ M_3 := \{\lnot p \leftrightarrow q, p \to r, \lnot p\} $$
+
+Wenn $p^I = \ff$, $q^I=tt$ und $r=tt$, dann ist $M_3$ erfüllbar, und damit laut Skript (Satz 2.5) auch konsistent.
+
+\end{enumerate}
+
+\pointsttl{25}
+
+\vfill\centering\includesvg[scale=.5]{../../smile.svg}
+\end{document}

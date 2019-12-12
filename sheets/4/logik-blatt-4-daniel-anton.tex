@@ -1,0 +1,125 @@
+\input{../../preamble.tex}
+
+
+% Logik f.I.
+
+\cfgtitle{4}
+\date{Donnerstag 14.11.2019}
+
+\newcommand\X{\mathcal{X}}
+
+\newcommand{\DNF}[1]{\mathrm{\,DNF({#1})}}
+\newcommand{\KNF}[1]{\mathrm{\,KNF({#1})}}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{5}
+
+\begin{itemize}
+	\item[] Sei $I$ eine Teilinterpretation von $J$. 
+	
+	Zu zeigen: Für alle $\beta : \X \mapsto D_I$ und alle existentiellen Formeln $A$ gilt:
+	
+	$$ \Ib \models A \Rightarrow \Jb \models A $$
+	
+	\textit{Beweis:} Induktionüber die Herleitungslänge
+	
+	\begin{enumerate}[(i)]
+	
+		\item Allgemeingültig
+		\item 
+		
+			\begin{align*}
+				\Ib \models A \land B & \Rightarrow \Ib \models A \text{ und } \Ib \models B & \text{(Def)} \\
+				 & \Rightarrow \Jb \models A \text{ und } \Jb \models B & \text{(IV)} \\
+				 & \Rightarrow \Jb \models A\land B & \text{(A4)}
+			\end{align*}
+			
+			
+		\item Analog zu (ii)
+		
+		\item Gelte $\Ib \models \ex{x} A$. Es folgt, dass für mindestens ein $d\in D_I : Ib\repl{x}{d}\models A$ gilt. Wir wissen, dass $d \in D_J$ gilt, da $D_I \subseteq D_J$ ist. Daraus folgt, dass $\Jb \models \ex{x}A$ auch gilt.
+	
+	
+	\qed
+	\end{enumerate}
+\end{itemize}
+
+\task{2}{9}
+
+Definiere:
+$$	A \equiv p \land q \lor q \land r \hspace{.4in}
+	B \equiv p \lor q \land r \rightarrow p \land q \lor q \land r \hspace{.4in}
+	C \equiv \lnot ( p \lor q \land r \rightarrow (\lnot \lnot p \leftrightarrow p)
+$$
+
+\begin{enumerate}
+	\item Wahrheitstabelle:
+
+	\begin{center}
+	\begin{tabular}{|c|c|c||c|c|c|c|c|c|c|c|}
+p & q & r & q $\land$ r & p $\lor$ q $\land$ r & p $\land$ q & A & B & $\lnot\lnot$p $\leftrightarrow$ p & C\\
+\hline
+tt	&	tt	&	tt	&	tt	&	tt	&	tt	&	tt		&	tt	&	tt	&	f\/f	\\
+tt	&	tt	&	f\/f &	f\/f	&	tt	&	f\/f	&	f\/f		&	tt	&	tt	&	f\/f	\\
+tt	&	f\/f	&	tt	&	f\/f	&	tt	&	f\/f	&	f\/f		&	f\/f	&	tt	&	f\/f	\\
+tt & f\/f	&	f\/f	&	f\/f	&	tt	&	f\/f	&	f\/f		&	f\/f	&	tt	&	f\/f	\\
+f\/f	& tt	&	tt	&	tt	&	tt	&	f\/f	&	tt	&	tt	&	tt	& 	f\/f	\\
+f\/f	& tt	&	f\/f	&	f\/f	&	f\/f	&	f\/f	&	f\/f	&	tt	&	tt	&	f\/f	\\
+f\/f	& f\/f	&	tt	&	f\/f	&	f\/f	&	f\/f	&	f\/f		&	tt	&	tt	&	f\/f	\\
+f\/f	& f\/f	&	f\/f	&	f\/f	&	f\/f	&	f\/f	&	f\/f	&	tt	&	tt	&	f\/f	\\
+\end{tabular}
+\end{center}
+
+	\item DNF und KNF für die Formel aus 1.(b)
+
+\begin{align*}
+\DNF{B} \equiv & \DNF{p \lor q \land r \rightarrow p \land q \lor q \land r} \\
+\equiv & (p \land q \land r) \lor (p \land q \land \lnot r) \lor (\lnot p \land q\land r) \lor (\lnot p \land q \land \lnot r) \lor (\lnot p \land \lnot q \land r) \lor (\lnot p \land \lnot q \land \lnot r)
+\\
+\\
+\KNF{B} \equiv & \KNF{p \lor q \land r \rightarrow p \land q \lor q \land r} \\
+\equiv & \, (p \lor \lnot q \lor r) \land (p \lor \lnot q \lor \lnot r) \\
+\equiv & \, p \lor \lnot q
+\end{align*}
+\end{enumerate}
+
+
+\task{3}{11}
+
+\begin{enumerate}
+
+	\item 
+	
+	\begin{align*}
+		\KNF{A} \equiv & \KNF{(p\to(q\to r))\to((p\to q)\to(q\to r))} & \text{(Def. A)}\\
+				\equiv & \KNF{(\lnot p\lor(q\to r))\to((\lnot p \lor q) \to (\lnot q \lor r))}  & \text{(Meta)}\\
+				\equiv & \KNF{(\lnot p\lor(\lnot q \lor r))\to (\lnot(\lnot p \lor q) \lor (\lnot q \lor r))}  & \text{(Meta)}\\
+				\equiv & \KNF{\lnot(\lnot p\lor(\lnot q \lor r))\lor((p \land \lnot  q) \lor (\lnot q \lor r))}  & \text{(Meta)}\\
+				\equiv & \KNF{\lnot(\lnot p\lor(\lnot q \lor r))\lor(((p \land \lnot  q) \lor (\lnot q \lor r)))}  & \text{(Meta)}\\
+				\equiv & \KNF{(p \land (q \land \lnot r)) \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}  & \text{(Meta)}\\
+				\equiv & \KNF{(p \land (q \land \lnot r)) \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}  & \text{(Meta)}\\
+				\equiv & \KNF{p \lor ((p \land \lnot  q) \lor (\lnot q \lor r))} \land \\ 
+					   & \KNF{(q \land \lnot r) \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}& \text{(Hinweis)}\\
+				\equiv & \KNF{(p \land \lnot  q) \lor (p \lor (\lnot q \lor r))} \land \\ 
+					   & \KNF{(q \land \lnot r) \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}& \text{(Klammerung)}\\
+				\equiv & \KNF{p \lor (p \lor (\lnot q \lor r))} \land \KNF{\lnot q \lor (p \lor (\lnot q \lor r))} \land \\ 
+				       & \KNF{q \lor ((p \land \lnot  q) \lor (\lnot q \lor r))} \land \KNF{\lnot r \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}& \text{(Hinweis)}\\
+				\equiv & \KNF{p \lor (\lnot q \lor r)} \land \KNF{p \lor (\lnot q \lor r)} \land \\ 
+				       & \KNF{q \lor ((p \land \lnot  q) \lor (\lnot q \lor r))} \land \KNF{\lnot r \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}& (A\land A \equiv A)\\
+				\equiv & \KNF{p \lor (\lnot q \lor r)} \land \KNF{q \lor ((p \land \lnot  q) \lor (\lnot q \lor r))} \land \\
+					   & \KNF{\lnot r \lor ((p \land \lnot  q) \lor (\lnot q \lor r))}& (A\land A \equiv A)\\
+				\vdots \, &  \\
+				\equiv & \,\lnot q \lor \lnot r & \text{(Draufschauen)} \\
+	\end{align*}
+
+\end{enumerate}
+
+
+
+\pointsttl{25}
+\smiley
+
+\end{document}
