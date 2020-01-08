@@ -1,0 +1,50 @@
+\input{../../preamble.tex}
+
+% Logik f.I.
+
+\cfgtitle{10}
+\date{Donnerstag 9.1.2020}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\task{1}{5}
+\begin{align}
+	\{21=21\}\, y &= 21\,  \{y=21\} & & & (=_p) \\
+	\{x=12\}\, y &= 21\,  \{y=21\} & x=12 \Rightarrow 21 = 21 && (\text{K})&(1) \\
+	\{2\cdot y = 42\}\, x &= 2\cdot y\,  \{x=42\} & & & (=_p) \\
+	\{y=21\}\, x &= 2\cdot y\,  \{x=42\} & 2\cdot y = 42 \Rightarrow y = 21 && (\text{K})&(3) \\
+	\{x=12\}\, y &= 21;\, x = 2\cdot y\,  \{x=42\} & & & (\text{Seq})&(2)(4) 
+\end{align}
+\task{2}{4}
+
+\begin{align*}
+	\text{A} &\equiv x = 0 \land y = 0 \land i = 0 \land z = 1 \land n = n_0 \land n > 0 \\
+	\text{B} &\equiv x = n_0^3\\
+\end{align*}
+$$ \{\text{A}\}\,\,\, \text{while}(i < n) \{i=i+1;\,x=x+y+z;\,y=y+2 \cdot z + 1;\,z=z+3;\}\,\,\, \{\text{B}\} $$
+
+Dabei wird die Schwache Semantik unterstellt, da keine Terminierungsgröße 
+angegeben wird. Eine gute terminierungsgröße wäre $z=-i$, die nach jeder ausführen 
+des Schleifenkörpers kleiner wird, aber nach unten durch $-(n+1)$ beschränkt ist.
+\task{3}{9}
+\begin{enumerate}[a)]
+	\item \begin{itemize}
+		\item P$_1(x,z) := \ex{y} \text{P}(x,y,z)$
+		\item P$_i(x,z) := \ex{z_1}\ex{y_1} \text{P}(x,y,z_1) \land \text{P}_{i-1}(z_1,z)$
+	\end{itemize}
+	\item \begin{itemize}
+		\item Alt$^\text{P}_1(x,z) := \ex{y} \text{P}(x,y,z)$
+		\item Alt$^\text{P}_i(x,z) := \ex{z_1}\ex{y_1} \text{P}(x,y,z_1) \land \text{Alt}^\text{R}_{i-1}(z_1,z)$
+		\item Alt$^\text{R}_1(x,z) := \ex{y} \text{R}(x,y,z)$
+		\item Alt$^\text{R}_i(x,z) := \ex{z_1}\ex{y_1} \text{R}(x,y,z_1) \land \text{Alt}^\text{P}_{i-1}(z_1,z)$
+		\item Alt$_i(x,z) := \text{Alt}^\text{P}_i(x,y) \lor \text{Alt}^\text{R}_i(x,y) $
+	\end{itemize}
+\end{enumerate}
+\task{4}{7}
+
+\pointsttl{25}
+
+\vfill\centering\includesvg[scale=.5]{../../smile.svg}
+\end{document}
