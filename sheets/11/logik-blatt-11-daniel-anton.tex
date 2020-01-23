@@ -18,7 +18,7 @@
 \task{2}{6}
 \begin{enumerate}[1.]
 	\item Erfüllbar, mit Ablauf $(\{p,q\})^\omega$
-	\item Nicht erfüllbar, da $p \to \lnot p$ in keinem zustand erfüllt sein kann.
+	\item Erfüllbar, mit Ablauf $\{p\},\emptyset^\omega$
 	\item Nicht erfüllbar, da $p \to \lnot p$ in keinem zustand erfüllt sein kann.
 	\item Erfüllbar, mit Ablauf $(\{p\})^\omega$
 \end{enumerate}
@@ -26,11 +26,21 @@
 
 \task{3}{6}
 \begin{enumerate}[1.]
-	\item 
-	\item 
-	\item 
+	\item $\X\G p \models \G p$ ist nicht herleitbar, da für $(\emptyset, \{p\}^\omega)$ zwar $\X\G p$ erfüllt, aber nicht $\G p$. 
+	\item \begin{align}
+		\G p & \models \G p   & \in \text{M} \\
+		\G p & \models \G\X p & \text{Folgt nach T3 aus} & \, (1)\\
+		\G p & \models \X\G p & \text{Satz 5.2}          & \, (2)
+	\end{align}
+	\qed
+	\item $\F(A\U B) \Rightarrow$ es existiert ein $i\geq 0$ mit $\pi^i \models A\U B \Rightarrow$ es existiert ein 
+	$j\geq i$ mit $\pi^j\models B \Rightarrow \F B$. Die Rückrichtung gilt auch, da $A\U B$ auf für 
+	$\pi = ({B},\emptyset^\omega)$ erfüllt ist (da in T4 auch $j=0$ gelten kann, und dann $0\leq i < j$ keine Elemente 
+	enthält). Damit folgt aus $\F B$ auch $\F(A\U B)$.
+	\qed
 \end{enumerate}
 
+\pagebreak 
 
 \task{4}{4}
 \begin{enumerate}[1.]
@@ -48,6 +58,7 @@
 	beschuldigen. Da Aber niemand sich selbst beschulfigt, können sie nur Hasib beschuldigen. Deshalb muss Hasib der 
 	Täter sein.
 \end{enumerate}
+
 
 
 \pointsttl{25}
